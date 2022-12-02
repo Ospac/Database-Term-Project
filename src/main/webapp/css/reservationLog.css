@@ -1,0 +1,51 @@
+@charset "UTF-8";
+.container{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding-top: 30px;
+}
+.wrapper{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #fff;
+	border-radius: 10px;
+	width: 320px;
+	height: 80px;
+	padding: 5px 20px;
+}
+.wrapper img{
+	width: 45px;
+	height: 45px;
+}
+.resInfo{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+}
+.hospitalName{
+	font-size: 15px;
+	font-weight: bold;
+}
+.doctorInfo{
+	font-size: 12px;
+	text-align: left;
+}
+.resState{
+	font-size: 10px;
+	padding: 5px 5px;
+}
+.resWaitState{
+	background-color: #ffca68;
+	border-radius: 15px;
+	
+	
+}
+.resReadyState{
+	background-color: #34f234;
+	border-radius: 15px;
+}
