@@ -1,0 +1,27 @@
+@charset "UTF-8";
+nav{
+	position: absolute;
+	width: 300px;
+	bottom: 0;
+	background-color: #ffffff;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	padding: 15px 50px;
+	font-size: 11px;
+
+}
+nav a{
+	display:flex;
+	flex-direction: column;
+	justify-content:center;
+	align-items: center;
+	gap: 5px;	
+}
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 1,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 40
+}

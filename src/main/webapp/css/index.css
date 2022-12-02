@@ -1,0 +1,34 @@
+@charset "UTF-8";
+.container{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.departmentWrapper{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 320px;
+	background-color: #fff;	
+	border-radius: 8px;
+	gap:18px;
+}
+.departmentHead{
+	font-size: 13px;
+	font-weight: bold;
+	padding-top: 15px;
+	padding-right: 200px;
+}
+.departmentBody{
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: repeat(4, 1fr);
+	font-size: 12px;
+	gap: 15px;
+}
+.departmentBody div{
+	width: 60px;
+	text-align:center;
+}
