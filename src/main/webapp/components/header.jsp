@@ -8,6 +8,12 @@
 	<link href="css/default.css" rel="stylesheet" type="text/css">
 </head>
 	<header>
-		Medical Access
+		<%
+			if(request.getParameter("headerTitle") != null){
+				out.println(request.getParameter("headerTitle"));
+			} else{
+				out.println("Medical Access");
+			}
+		%>
 	</header>
 </html>

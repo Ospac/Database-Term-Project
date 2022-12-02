@@ -12,11 +12,11 @@
 		<span class="material-symbols-outlined">home</span>
 		<span>홈</span>
 	</a>
-	<a href="reservation.jsp">
+	<a href="reservationLog.jsp">
 		<span class="material-symbols-outlined">outpatient_med</span>
 		<span>예약 내역</span>
 	</a>	
-	<a href="prescripton.jsp">
+	<a href="prescriptionLog.jsp">
 		<span class="material-symbols-outlined">prescriptions</span>
 		<span>처방 내역</span>
 	</a>

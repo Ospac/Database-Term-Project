@@ -1,0 +1,85 @@
+@charset "UTF-8";
+.container{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+ 	background-color: #fff; 
+}
+.patientWrapper{
+	padding-top: 50px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: #fff;
+	border-radius: 8px;
+	padding-bottom: 18px;
+	border-bottom: solid 1px black;
+
+}
+.title{
+	font-size: 14px;
+	font-weight: bold;
+	padding-right: 230px;
+}
+.patientInfo{
+	width: 320px;
+	height: 80px;
+	display: grid;
+	grid-template-columns: 1fr 3fr;
+}
+.patientInfo img{
+	width: 75px;
+	height: 75px;
+	padding: 5px 0 5px 10px;
+}
+.patientProfile{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	padding-left: 54px;
+}
+.patientName{
+	font-size: 15px;
+	font-weight: bold;
+	padding-right: 30px;
+}
+.patientBloodInfo{
+	font-size: 13px;
+}
+.patientID{
+	font-weight: light;
+	font-size: 13px;
+}
+.symptomWrapper{
+	padding-top: 50px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: #fff;
+	border-radius: 13px;
+}
+.symptomInput{
+	margin-top: 10px;
+	padding: 5px 5px;
+	width: 100%;
+	height: 120px;
+	border: solid 0.5px #515151;
+	font-size: 13px;
+	resize: none;
+	
+}
+.symptomInput::placeholder{
+	color: black;
+}
+.reservationBtn{
+	width: 100%;
+	height: 40px;
+	margin-top: 50px;
+	background-color: #ffa800;
+	font-weight: bold;
+	font-size: 14px;
+}

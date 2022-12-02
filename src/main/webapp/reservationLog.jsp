@@ -4,13 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="css/default.css" rel="stylesheet" type="text/css">
 <title>Insert title here</title>
-
 </head>
 <body>
-	<%@ include file="header.jsp" %>
-	
-	<%@ include file="footer.jsp" %>
+	<jsp:include page="/components/header.jsp" flush="true">
+	    <jsp:param name="headerTitle" value="예약 내역"/>
+	</jsp:include>	
+	<%@ include file="/components/footer.jsp" %>
 </body>
 </html>

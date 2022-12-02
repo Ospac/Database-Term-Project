@@ -10,32 +10,32 @@
 
 </head>
 <body>
-	<%@ include file="header.jsp" %>
+	<%@ include file="/components/header.jsp" %>
 	<div class="container">
-		<!-- 진료과목 검색 -->
+		<!-- 진료 과목 검색 -->
 		<div class="departmentWrapper">
 			<div class="departmentHead">진료 과목</div>
-			<div class="departmentBody">
-				<a>내과</a>
-				<a>외과</a>
-				<a>이비인후과</a>
-				<a>피부과</a>
-				<a>소아과</a>
-				<a>비뇨기과</a>
-				<a>산부인과</a>
-				<a>안과</a>
-				<a>가정의학과</a>
-				<a>소아청소년</a>
-			</div>
+			<form class="departmentBody" action="doctors.jsp" method="post">
+				<input name="department" type="submit" value="내과">
+				<input name="department" type="submit" value="외과">
+				<input name="department" type="submit" value="이비인후과">
+				<input name="department" type="submit" value="피부과">
+				<input name="department" type="submit" value="소아과">
+				<input name="department" type="submit" value="비뇨기과">
+				<input name="department" type="submit" value="산부인과">
+				<input name="department" type="submit" value="안과">
+				<input name="department" type="submit" value="가정의학과">
+				<input name="department" type="submit" value="소아청소년">
+			</form>
 		</div>
-		<!-- 지역검색 -->
+		<!-- 약국 검색 -->
 		<div class="locationWrapper">
 			<div class="locationHead"></div>
 			<div class="locationBody">
 			</div>
 		</div>
 	</div>
-	<%@ include file="footer.jsp" %>
+	<%@ include file="/components/footer.jsp" %>
 	
 </body>
 </html>	
