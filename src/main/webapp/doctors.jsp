@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page language="java" import="java.text.*, java.sql.*" %>
-    
+<%
+	request.setCharacterEncoding("UTF-8");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +30,7 @@
 	Class.forName("oracle.jdbc.driver.OracleDriver");
 	conn = DriverManager.getConnection(url,user,pass);
 	
-	String query = "select doc_name, hos_name from doctor, department, hospital where doctor.dep_id = department.dep_id and dep_name =" + "'내과'"+" and department.hos_id = hospital.hos_id";
+	String query = "select doc_id, doc_name, hos_name from doctor, department, hospital where doctor.dep_id = department.dep_id and dep_name ='"+departmentName+"' and department.hos_id = hospital.hos_id";
 	pstmt = conn.prepareStatement(query);
 	rs = pstmt.executeQuery();
 	
@@ -39,11 +41,10 @@
 	<div class="container">
 		<div style="overflow:scroll; width:400px; height:600px;">
 		<form class="doctorsContainer" action="reservation.jsp" method="post">
-	
+		
 <%
-
 while(rs.next()){
-	out.println("<button class=\"doctorWrapper\" name=\"doctor\" type=\"submit\" value=\"D000001\">");
+	out.println("<button class=\"doctorWrapper\" name=\"doctor\" type=\"submit\" value=\""+rs.getString("doc_id")+"\">");
 	out.println("<img src=\"./resources/profile.jpg\"/>");
 	out.println("<div class=\"doctorProfile\">");	
 	out.println("<div class=\"doctorName\">" +rs.getString("doc_name")+ "의사</div>");

@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.text.*, java.sql.*" %>
+<%
+	request.setCharacterEncoding("UTF-8");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,22 +14,36 @@
 
 </head>
 <body>
+<% 
+	
+	String serverIP = "localhost";
+	String strSID = "orcl";
+	String portNum = "1521";
+	String user = "team12";
+	String pass = "team12";
+	String url = "jdbc:oracle:thin:@"+serverIP+":"+portNum+":"+strSID;
+	Connection conn = null;
+	PreparedStatement pstmt;
+	ResultSet rs;
+	Class.forName("oracle.jdbc.driver.OracleDriver");
+	conn = DriverManager.getConnection(url,user,pass);
+	
+	String query = "select distinct dep_name from department";
+	pstmt = conn.prepareStatement(query);
+	rs = pstmt.executeQuery();
+	
+%>
 	<%@ include file="/components/header.jsp" %>
 	<div class="container">
 		<!-- 진료 과목 검색 -->
 		<div class="departmentWrapper">
 			<div class="departmentHead">진료 과목</div>
-			<form class="departmentBody" action="doctors.jsp" method="post">
-				<input name="department" type="submit" value="내과">
-				<input name="department" type="submit" value="외과">
-				<input name="department" type="submit" value="이비인후과">
-				<input name="department" type="submit" value="피부과">
-				<input name="department" type="submit" value="소아과">
-				<input name="department" type="submit" value="비뇨기과">
-				<input name="department" type="submit" value="산부인과">
-				<input name="department" type="submit" value="안과">
-				<input name="department" type="submit" value="가정의학과">
-				<input name="department" type="submit" value="소아청소년">
+			<form class="departmentBody" action="doctors.jsp" method="get" accept-charset="utf-8">
+<% 
+	while(rs.next()){
+		out.println("<input name=\"department\" type=\"submit\" value=\"" + rs.getString("dep_name")+"\">");
+	}
+%>
 			</form>
 		</div>
 		<!-- 약국 검색 -->
