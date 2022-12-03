@@ -12,7 +12,7 @@
 <link href="css/reservation.css" rel="stylesheet" type="text/css">
 <title>Medical Access</title>
 	<%
-		String timeinfo = request.getParameter("docSchedule");
+		String timeinfo = request.getParameter("timeinfo");
 		String doc_id = request.getParameter("doctor");
 		String pid = request.getParameter("pid");
 	%>
@@ -34,13 +34,12 @@
 	String query = "select pat_id, pat_name, blood_type, hos_name, doc_name, dep_name from hospital, doctor, department, reservation, patient where patient.pat_id = 'P000001' and doctor.doc_id = 'D000096' and reservation.doc_id = doctor.doc_id and doctor.dep_id = department.dep_id and department.hos_id = hospital.hos_id";
 	pstmt = conn.prepareStatement(query);
 	rs = pstmt.executeQuery();
-	out.println(timeinfo);
 %>
 	<jsp:include page="/components/header.jsp" flush="true">
     <jsp:param name="headerTitle" value="예약"/>
 	</jsp:include>	
 	<form class="container" action="setReservation.jsp" method="post">
-	<div style="overflow:scroll; width:400px; height:600px;">
+	<div style="overflow:scroll; width:450px; height:600px;">
 		<input type = "hidden" name = "id" value="<%=pid%>"/>
 		<div class="title"><%=timeinfo %></div>
 			<%

@@ -44,6 +44,7 @@
 		<form class="doctorsContainer" action="reservation.jsp" method="post">
 		<input type = "hidden" name = "id" value="<%=pid%>"/>
 		<%
+		out.println("<div>원하는 시간을 선택하세요</div>");
 		String timeinfo = "";
 		while(rs.next()){
 			String date = rs.getString("S_date").substring(0,10);
@@ -65,8 +66,12 @@
 			String starttimeinfo = hour+":"+min;
 			String endtimeinfo = String.valueOf(e_hour)+":"+ee_min;
 			timeinfo = starttimeinfo+ " ~ " + endtimeinfo;
+			out.println("<button class=\"scheduleWrapper\" name =\"timeinfo\" type=\"subimt\" value=\"" + timeinfo +"\">");
+			out.println("<div class=\"schedule\">");	
 			out.println("<div class=\"date\">" +date+ "</div>");
-			out.println("<button class=\"timeinfo\" name =\"timeinfo\" type=\"subimt\" value=" + timeinfo +">");
+			out.println("<div class=\"time\">" +timeinfo + "</div>");
+			out.println("</div>");
+			out.println("</button>");
 		}
 		%>
 		</form>
