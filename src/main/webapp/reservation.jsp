@@ -12,6 +12,7 @@
 <link href="css/reservation.css" rel="stylesheet" type="text/css">
 <title>Medical Access</title>
 	<%
+		String timeinfo = request.getParameter("docSchedule");
 		String doc_id = request.getParameter("doctor");
 		String pid = request.getParameter("pid");
 	%>
@@ -33,13 +34,15 @@
 	String query = "select pat_id, pat_name, blood_type, hos_name, doc_name, dep_name from hospital, doctor, department, reservation, patient where patient.pat_id = 'P000001' and doctor.doc_id = 'D000096' and reservation.doc_id = doctor.doc_id and doctor.dep_id = department.dep_id and department.hos_id = hospital.hos_id";
 	pstmt = conn.prepareStatement(query);
 	rs = pstmt.executeQuery();
-	
+	out.println(timeinfo);
 %>
 	<jsp:include page="/components/header.jsp" flush="true">
     <jsp:param name="headerTitle" value="예약"/>
 	</jsp:include>	
 	<form class="container" action="setReservation.jsp" method="post">
+	<div style="overflow:scroll; width:400px; height:600px;">
 		<input type = "hidden" name = "id" value="<%=pid%>"/>
+		<div class="title"><%=timeinfo %></div>
 			<%
 			while(rs.next()){
 				out.println("<div class=\"patientWrapper\">");
@@ -69,8 +72,11 @@
 		<div class="symptomWrapper">
 			<div class="title">증상 입력</div>
 			<textarea name="symptom" class="symptomInput" placeholder="ex) 감기기운, 두통 및 콧물"></textarea>
-			<button type="submit" class="reservationBtn">진료 신청</button>
 		</div>
+		<button type="submit" class="reservationBtn">진료 신청</button>
+		<br>
+		<br>
+	</div>
 	</form>
 	<%@ include file="/components/footer.jsp" %>
 </body>
