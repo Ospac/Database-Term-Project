@@ -17,7 +17,6 @@
 </head>
 <body>
 <% 
-	
 	String serverIP = "localhost";
 	String strSID = "orcl";
 	String portNum = "1521";
@@ -55,14 +54,15 @@
 			<div class="locationHead">약국 검색
 			</div>
 			<form class="locationBody" action="parmacy.jsp">
-				<select name="par_loaction">
+				<select name="par_location">
 					<%
 					query = "select par_location from parmacy";
 					pstmt = conn.prepareStatement(query);
 					rs = pstmt.executeQuery();
 					while(rs.next()) {
 						String tmp = rs.getString("par_location");
-						out.println("<option value=\""+tmp+"\">"+tmp+"</option");
+						String[] tmps = tmp.split(" ");
+						out.println("<option value=\""+ tmps[1] +"\">"+tmps[1]+"</option>");//tmps[1] = 북구, tmps[2] = ㅇㅇㅇ로
 					}
 					%>
 				</select>

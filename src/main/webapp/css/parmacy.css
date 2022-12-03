@@ -1,0 +1,46 @@
+@charset "UTF-8";
+.container{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	overflow:scroll; 
+	width:400px; 
+	height:600px;
+}
+
+.parmacy{
+	width: 320px;
+	height: 80px;
+	display: grid;
+	grid-template-columns: 1fr 3fr;
+	background-color: #fff;
+	border-radius: 8px;
+	gap:15px;
+	padding:10px;
+	margin-top:20px;
+}
+
+.parmacy img{
+	width: 75px;
+	height: 90%;
+	padding: 5px 0 5px 10px;
+}
+
+.parInfo{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	padding-left: 40px;
+}
+
+.parName{
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.parLocation{
+	font-size: 10px;
+	font-weight: light;
+}
