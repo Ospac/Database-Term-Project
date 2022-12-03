@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.text.*, java.sql.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +10,24 @@
 <title>Medical Access</title>
 </head>
 <body>
+<% 
+	String serverIP = "localhost";
+	String strSID = "orcl";
+	String portNum = "1521";
+	String user = "team12";
+	String pass = "team12";
+	String url = "jdbc:oracle:thin:@"+serverIP+":"+portNum+":"+strSID;
+	Connection conn = null;
+	PreparedStatement pstmt;
+	ResultSet rs;
+	Class.forName("oracle.jdbc.driver.OracleDriver");
+	conn = DriverManager.getConnection(url,user,pass);
+	
+	String query = "select pat_id, pat_name, blood_type, hos_name, doc_name, dep_name from patient, hospital, doctor, department, reservation where pat_id = 'P000001' and res_id = '" +"R000001"+"' and reservation.doc_id = doctor.doc_id and doctor.dep_id = department.dep_id and department.hos_id = hospital.hos_id";
+	pstmt = conn.prepareStatement(query);
+	rs = pstmt.executeQuery();
+	
+%>
 	<jsp:include page="/components/header.jsp" flush="true">
     <jsp:param name="headerTitle" value="예약"/>
 	</jsp:include>	
@@ -19,9 +38,13 @@
 			<div class="patientInfo">
 				<img src="./resources/profile.jpg">
 				<div class="patientProfile">
-					<div class="patientID">P000001</div>
-					<div class="patientName">이소율</div>
-					<div class="patientBloodInfo">AB형</div>
+				<%
+				while(rs.next()){
+					out.println("<div class=\"patientID\">" +rs.getString("pat_id")+ "</div>");
+					out.println("<div class=\"patientName\">" +rs.getString("pat_name") + "</div>");
+					out.println("<div class=\"patientBloodInfo\">" +rs.getString("blood_type") + "</div>");
+				}
+				%>
 				</div>
 			</div>
 		</div>
