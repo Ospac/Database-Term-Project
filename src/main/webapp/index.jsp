@@ -52,9 +52,22 @@
 		</div>
 		<!-- 약국 검색 -->
 		<div class="locationWrapper">
-			<div class="locationHead"></div>
-			<div class="locationBody">
+			<div class="locationHead">약국 검색
 			</div>
+			<form class="locationBody" action="parmacy.jsp">
+				<select name="par_loaction">
+					<%
+					query = "select par_location from parmacy";
+					pstmt = conn.prepareStatement(query);
+					rs = pstmt.executeQuery();
+					while(rs.next()) {
+						String tmp = rs.getString("par_location");
+						out.println("<option value=\""+tmp+"\">"+tmp+"</option");
+					}
+					%>
+				</select>
+				<input type="submit"/>
+			</form>
 		</div>
 	</div>
 	<%@ include file="/components/footer.jsp" %>
