@@ -13,6 +13,7 @@
 <link href="css/default.css" rel="stylesheet" type="text/css">
 	<%
 		String departmentName = request.getParameter("department");
+		String pid = request.getParameter("pid");
 	%>
 </head>
 <body>
@@ -41,7 +42,7 @@
 	<div class="container">
 		<div style="overflow:scroll; width:400px; height:600px;">
 		<form class="doctorsContainer" action="reservation.jsp" method="post">
-		
+		<input type = "hidden" name = "id" value="<%=pid%>"/>
 <%
 while(rs.next()){
 	out.println("<button class=\"doctorWrapper\" name=\"doctor\" type=\"submit\" value=\""+rs.getString("doc_id")+"\">");

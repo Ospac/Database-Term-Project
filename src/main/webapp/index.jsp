@@ -11,7 +11,9 @@
 <title>Medical Access</title>
 <link href="css/default.css" rel="stylesheet" type="text/css">
 <link href="css/index.css" rel="stylesheet" type="text/css">
-
+<%
+		String pid = request.getParameter("id");
+%>
 </head>
 <body>
 <% 
@@ -39,11 +41,13 @@
 		<div class="departmentWrapper">
 			<div class="departmentHead">진료 과목</div>
 			<form class="departmentBody" action="doctors.jsp" method="get" accept-charset="utf-8">
+			<input type = "hidden" name = "id" value="<%=pid%>"/>
 <% 
 	while(rs.next()){
 		out.println("<input name=\"department\" type=\"submit\" value=\"" + rs.getString("dep_name")+"\">");
 	}
 %>
+			
 			</form>
 		</div>
 		<!-- 약국 검색 -->
