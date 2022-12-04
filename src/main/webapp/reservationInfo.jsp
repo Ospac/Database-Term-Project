@@ -68,7 +68,7 @@
 					rs.next();
 					
 					out.println("<div class=\"resInfo\">");
-						out.println("<div class=\"hospitalName\">" + rs.getString("pat_name") + "</div>");
+						out.println("<div class=\"hospitalName\"> 환자이름 : " + rs.getString("pat_name") + "</div>");
 						out.println("<div class=\"doctorInfo\">");
 							out.println("<div class=\"doctorDept\"> 혈액형 : " +rs.getString("blood_type") + "</div>");
 							out.println("<div class=\"doctorName\"> 성별 : " +rs.getString("sex") + " </div>");

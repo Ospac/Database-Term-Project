@@ -52,7 +52,7 @@
 				out.println("<img src='./resources/medical-list.png'/>");
 				out.println("<div class='preInfo'>");
 					out.println("<div class=\"doctorInfo\"> 처방전 번호 : " +rs.getString("pre_id")+ "</div>");
-					out.println("<div class=\"departmentName\"> 의사 : " +rs.getString("doc_id") + "</div>");
+					out.println("<div class=\"departmentName\"> 환자 번호 : " +rs.getString("p_id") + "</div>");
 				out.println("</div>");
 				out.println("</button>");
 			}
