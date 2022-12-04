@@ -35,7 +35,7 @@
 	rs = pstmt.executeQuery();
 	
 	rs.next();
-	
+	String isPatient = session.getAttribute("isPatient").toString();
 	String symptom = rs.getString("symptom");
  	int state = rs.getInt("state");
  	String doc_id = rs.getString("doc_id");
@@ -50,7 +50,7 @@
 			<img src="./resources/diagnosis.png"/>
 			<div class="doc_information">
 			<%
-				if(session.getAttribute("isPatient").equals("true")){
+				if(isPatient.equals("true")){
 					query = "select doc_name, dep_name, hos_name from doctor D, hospital H, department DEP where DEP.dep_id = D.dep_id and DEP.hos_id = H.hos_id and doc_id = \'"+ doc_id +"\'";
 					pstmt = conn.prepareStatement(query);
 					rs = pstmt.executeQuery();
@@ -73,8 +73,8 @@
 					out.println("<div class=\"resInfo\">");
 						out.println("<div class=\"hospitalName\"> 환자 이름: " + rs.getString("pat_name") + "</div>");
 						out.println("<div class=\"doctorInfo\">");
-							out.println("<div class=\"doctorName\"> 성별: " +rs.getString("sex") + " </div>");
-							out.println("<div class=\"doctorDept\"> 혈액형: " +rs.getString("blood_type") + "</div>");
+							out.println("<div class=\"doctorDept\"> 혈액형 : " +rs.getString("blood_type") + "</div>");
+							out.println("<div class=\"doctorName\"> 성별 : " +rs.getString("sex") + " </div>");
 						out.println("</div>");
 					out.println("</div>");
 				}
@@ -95,6 +95,20 @@
 				%>
 			</div>
 		</div>
+		<form action="prescription.jsp">
+		<%
+		if(!isPatient.equals("true")) {
+			out.println("<input type=\"hidden\" name=\"p_id\" value=\"" + p_id + "\">");
+			out.println("<input type=\"hidden\" name=\"doc_id\" value=\"" + doc_id + "\">");
+			out.println("<div class=\"prescriptionWrapper\">");
+			out.println("<div class=\"title\">처방전 입력</div>");
+			out.println("<textarea name=\"contents\" class=\"prescriptionInput\" placeholder=\"ex) 지르택정 10mg 10정 * 3 \">");
+			out.println("</textarea>");
+			out.println("</div>");
+			out.println("<button type=\"submit\" class=\"prescriptionBtn\">입력 완료</button>");
+		}
+		%>
+		</form>		
 	</div>
 	
 	<%@ include file="/components/footer.jsp" %>
