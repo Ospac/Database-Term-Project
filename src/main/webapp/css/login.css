@@ -1,0 +1,37 @@
+@charset "UTF-8";
+.container{
+	background-color: white;
+	height: 100%;
+}
+.loginForm{
+	height: 400px;
+	display:flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.wrapper{
+	display:flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.wrapper input{
+	border: none;
+	border-bottom: solid 1px black;
+	padding:10px 5px;
+	width: 300px;
+	margin-top: 15px;
+}
+.loginForm button{
+	width: 320px;
+	padding: 5px 15px;
+	border-radius: 15px;
+	background-color: rgb(255, 196, 85);
+	font-size: 14px;
+	margin-top: 50px;
+}
+.memberCheck{
+	margin-top: 15px;
+	font-size: 13px;
+}

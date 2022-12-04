@@ -1,16 +1,42 @@
 @charset "UTF-8";
 .container{
-	
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	background-color:white;
+	height: 95%;
 }
 .wrapper{
 	
 }
 .label{
-	
+	font-size: 13px;
+	color: #353535;
+	margin-top: 30px;
 }
 .infoInput{
-	
+	border: none;
+	border-bottom: solid 1px black;
+	padding:5px 5px;
+	width: 300px;
 }
 .editBtn{
+	width: 300px;
+	padding: 5px 15px;
+	border-radius: 5px;
+	background-color: rgb(255, 196, 85);
+	font-size: 14px;
+	margin-top: 50px;
+	
+}
+.logoutBtn{
+	width: 300px;
+	padding: 5px 15px;
+	border-radius: 5px;
+	background-color: rgb(255, 137, 137);
+	font-size: 14px;
+	margin-top: 10px;
+	margin-right: 10px;
 	
 }

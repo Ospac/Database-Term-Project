@@ -36,10 +36,10 @@
 	justify-content: center;
 	align-items: center;
 	width: 100%;
-	padding: 5px;
+	padding: 8px;
 	font-size: 15px;
 	font-weight: bold;	
-	border-bottom: solid 2px;
+	border-bottom: solid 1px;
 }
 
 .symptomInfo{
@@ -47,7 +47,7 @@
 	justify-content: center;
 	align-items: center;
 	margin-top: 10px;
-	font-size: 12px;
+	font-size: 13px;
 	width: 100%;
 	height: 100%;
 }
