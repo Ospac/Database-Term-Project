@@ -42,35 +42,26 @@
 			<form class="departmentBody" action="doctors.jsp" method="get" accept-charset="utf-8">
 			<input type = "hidden" name = "id" value="<%=pid%>"/>
 <% 
+	int i = 0;
 	while(rs.next()){
-		out.println("<input name=\"department\" type=\"submit\" value=\"" + rs.getString("dep_name")+"\">");
+		String depName = rs.getString("dep_name");
+		out.println("<button class='department' name=\"department\" type=\"submit\" value=\"" + depName+"\">");
+			out.println("<img src='./resources/department/"+ i +".png' >");
+			out.println("<div>"+ depName +"</div>");
+		out.println("</button>");
+		i++;
 	}
 %>
 			
 			</form>
 		</div>
 		<!-- 약국 검색 -->
-		<div class="locationWrapper">
-			<div class="locationHead">약국 검색
-			</div>
-			<form class="locationBody" action="parmacy.jsp">
-				<select name="par_location">
-					<%
-					query = "select par_location from parmacy";
-					pstmt = conn.prepareStatement(query);
-					rs = pstmt.executeQuery();
-					while(rs.next()) {
-						String tmp = rs.getString("par_location");
-						String[] tmps = tmp.split(" ");
-						out.println("<option value=\""+ tmps[1] +"\">"+tmps[1]+"</option>");//tmps[1] = 북구, tmps[2] = ㅇㅇㅇ로
-					}
-					%>
-				</select>
-				<input type="submit"/>
-			</form>
-		</div>
+		<%
+			request.setAttribute("conn", conn);
+		%>
+		<%@ include file="/components/searchParmacy.jsp" %>
+
 	</div>
 	<%@ include file="/components/footer.jsp" %>
-	
 </body>
 </html>	

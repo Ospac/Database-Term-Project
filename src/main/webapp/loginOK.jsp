@@ -43,7 +43,7 @@
 		}
 		if(name != "")
 		{
-			out.println("<form action=\"home.jsp\" method=\"post\">");
+			out.println("<form action=\"index.jsp\" method=\"post\">");
 			out.println("로그인 성공!");
 			out.println("<input type = \"hidden\" name = \"id\" value=" +pid+"\"/>");
 			out.println("<button type= \"submit\">확인</button>");

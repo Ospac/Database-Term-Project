@@ -1,57 +1,48 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page language="java" import="java.text.*, java.sql.*, java.util.Date, java.util.Calendar" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Medical Access</title>
-<link href="css/schedule.css" rel="stylesheet" type="text/css">
 <link href="css/default.css" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="components/calendar.js"></script>
+<link href="css/reservation.css" rel="stylesheet" type="text/css">
+<title>Medical Access</title>
 </head>
 <body>
 	<jsp:include page="/components/header.jsp" flush="true">
-	    <jsp:param name="headerTitle" value="일정"/>
+    <jsp:param name="headerTitle" value="예약"/>
 	</jsp:include>	
-	 <script>
-		document.addEventListener("DOMContentLoaded", () => init());
-	</script>
-	<div class="container">
-		<div class="scroll">
-			<div class="weekWrapper">
-				<div class="weekSelect">
-					<button class="arrowLeft"><span class="material-symbols-outlined">chevron_left</span></button>
-					<div class="yearMonth"></div>
-					<button class="arrowRight"><span class="material-symbols-outlined">chevron_right</span></button>
-				</div>
-				<div class="dayNames">
-	                <span>일</span>
-	                <span>월</span>
-	                <span>화</span>
-	                <span>수</span>
-	                <span>목</span>
-	                <span>금</span>
-	                <span>토</span>
-				</div>
-				<div class="dayNumbers">
-	                <span></span>
-	                <span></span>
-	                <span></span>
-	                <span></span>
-	                <span></span>
-	                <span></span>
-	                <span></span>
+		
+	<form class="container" action="checkSchedule.jsp" method="post">
+		<div class="patientWrapper">
+			<div class="title">진료 대상</div>
+			<div class="patientInfo">
+				<img src="./resources/profile.jpg">
+				<div class="patientProfile">
+					<div class="patientID">P000001</div>
+					<div class="patientName">이소율</div>
+					<div class="patientBloodInfo">AB형</div>
 				</div>
 			</div>
-			<div class="selectedDate"></div>
-	        <div class="todoWrapper">
-        	</div>
-        </div>
-	</div>
+		</div>
+		<div class="patientWrapper">
+			<div class="title">의사 정보</div>
+			<div class="patientInfo">
+				<img src="./resources/profile.jpg">
+				<div class="patientProfile">
+					<div class="patientID">내과</div>
+					<div class="patientName">김서진</div>
+					<div class="patientBloodInfo">우리내과의원</div>
+				</div>
+			</div>
+		</div>
+		<div class="symptomWrapper">
+			<div class="title">증상 입력</div>
+			<textarea name="symptom" class="symptomInput" placeholder="ex) 감기기운, 두통 및 콧물">
+			</textarea>
+		</div>
+		<button type="submit" class="reservationBtn">일정 확인</button>
+	</form>
 	<%@ include file="/components/footer.jsp" %>
-	<script>
-		init();
-	</script>
 </body>
 </html>

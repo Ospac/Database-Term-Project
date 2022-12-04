@@ -26,34 +26,42 @@ if(rs.next()){
 	do{
 		String hour = rs.getString("S_hour");
 		String minute = rs.getString("S_minute");
+		out.println("<form class='todoWrapper' action='writeReservation.jsp' method='post'>");
 		for(int i = 9; i < 22; i++){
-			out.println("<div class='todo'>");
 			if(i == Integer.parseInt(hour)){
-				out.println("<div class='time reserve'>");
-					out.println("<div class='calTime'>" + i +"</div>");
-					out.println("<div class='resTime'>");
-						out.println(hour + ":" + (minute.equals("0")? "00" : minute)+" 예약됨");
+				out.println("<div class='todo'>");
+					out.println("<div class='time reserve'>");
+						out.println("<div class='calTime'>" + i +"</div>");
+						out.println("<div class='resTime'>");
+							out.println(hour + ":" + (minute.equals("0")? "00" : minute)+" 예약됨");
+						out.println("</div>");
 					out.println("</div>");
 				out.println("</div>");
-
 			}else{
-				out.println("<div class='time'>");
-				out.println("<div class='calTime'>" + i +"</div>");
-				out.println("<div class='resTime'>");
-				out.println("</div>");
-			out.println("</div>");
+					out.println("<button class='todo' name='resTime' value='i' type='submit'>");
+						out.println("<div class='time'>");
+								out.println("<div class='calTime'>" + i +"</div>");
+								out.println("<div class='resTime'>");
+							out.println("</div>");
+						out.println("</div>");
+					out.println("</button>");
 			}
-			out.println("</div>");
+		out.println("</form>");
 		}
 	}while(rs.next());
 }else{
+	out.println("<form class='todoWrapper' action='writeReservation.jsp' method='post'>");
 	for(int i = 9; i < 22; i++){
-		out.println("<div class='todo'>");
-			out.println("<div class='time'>");
-				out.println("<div class='calTime'>" + i +"</div>");
-			out.println("</div>");
-		out.println("</div>");
+			out.println("<button button class='todo' name='resTime' value='i' type='submit'>");
+				out.println("<div class='time'>");
+						out.println("<div class='calTime'>" + i +"</div>");
+						out.println("<div class='resTime'>");
+					out.println("</div>");
+				out.println("</div>");
+			out.println("</button>");
 	}
+	out.println("</form>");
+
 }
 rs.close();
 %>

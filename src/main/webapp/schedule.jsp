@@ -18,7 +18,6 @@
 		document.addEventListener("DOMContentLoaded", () => init());
 	</script>
 	<div class="container">
-		<div class="scroll">
 			<div class="weekWrapper">
 				<div class="weekSelect">
 					<button class="arrowLeft"><span class="material-symbols-outlined">chevron_left</span></button>
@@ -48,7 +47,6 @@
 	        <div class="todoWrapper">
         	</div>
         </div>
-	</div>
 	<%@ include file="/components/footer.jsp" %>
 	<script>
 		init();
