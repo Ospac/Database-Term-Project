@@ -23,9 +23,10 @@
 	Class.forName("oracle.jdbc.driver.OracleDriver");
 	conn = DriverManager.getConnection(url,user,pass);
 	
-	String uid = session.getAttribute("id");
+	String uid = session.getAttribute("id").toString();
 	String query = "";
-	if (session.getAttribute("isPatient"))
+	String isPatient = session.getAttribute("isPatient").toString();
+	if (isPatient.equals("true"))
 		query = "select res_id, symptom, p_id, doc_id, state from reservation where p_id = \'" + uid + "\'"; 
 	else
 		query = "select res_id, symptom, p_id, doc_id, state from reservation where doc_id = \'" + uid + "\'";
@@ -33,24 +34,23 @@
 	rs = pstmt.executeQuery();
 	%>
 	<jsp:include page="/components/header.jsp" flush="true">
-	    <jsp:param name="headerTitle" value="예약 내역"/>
+	    <jsp:param name="headerTitle" value="예약 목록"/>
 	</jsp:include>	
-	<%@ include file="/components/footer.jsp" %>
 	<form class="container" action="reservationInfo.jsp" method="post">
 		<%
 		while(rs.next()) {
 			out.println("<button class=\"wrapper\" name=\"reservation\" value =\"" + rs.getString("res_id") + "\">");
 			out.println("<img src=\"./resources/medical-list.png\"/>");
 			out.println("<div class=\"resInfo\">");
-			out.println("<div class=\"hospitalName\">" + rs.getString("res_id") + "</div>");
+			out.println("<div class=\"hospitalName\"> 예약번호 : " + rs.getString("res_id") + "</div>");
 			out.println("<div class=\"doctorInfo\">");
-			if (session.getAttribute("isPatient")) {
-				out.println("<div class=\"doctorName\">"+ rs.getString("doc_id") + "</div>");
-				out.println("<div class=\"doctorDept\">" + rs.getString("p_id") +"</div>");
+			if (isPatient.equals("true")) {
+				out.println("<div class=\"doctorName\"> 의사 : " + rs.getString("doc_id") + "</div>");
+				out.println("<div class=\"doctorDept\"> 환자 : " + rs.getString("p_id") +"</div>");
 			}
 			else {
-				out.println("<div class=\"doctorName\">"+ rs.getString("p_id") + "</div>");
-				out.println("<div class=\"doctorDept\">" + rs.getString("doc_id") +"</div>");
+				out.println("<div class=\"doctorName\"> 환자 : " + rs.getString("p_id") + "</div>");
+				out.println("<div class=\"doctorDept\"> 의사 : " + rs.getString("doc_id") +"</div>");
 			}
 			out.println("</div>");
 			out.println("</div>");
@@ -62,5 +62,6 @@
 		}
 		%>
 	</form>
+		<%@ include file="/components/footer.jsp" %>
 </body>
 </html>

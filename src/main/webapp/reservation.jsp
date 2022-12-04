@@ -39,7 +39,6 @@
 	</jsp:include>
 	<div style="overflow:auto; width:400px; height: 600px;">	
 	<form class="container" action="checkSchedule.jsp" method="post">
-	
 		<%
 		while(rs.next()) {
 			out.println("<div class=\"patientWrapper\">");
