@@ -6,8 +6,7 @@
 	align-items: center;
 	padding-top: 30px;
 }
-
-.wrapper{
+.resInfoWrapper{
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
@@ -18,10 +17,56 @@
 	height: 80px;
 	padding: 5px 20px;
 }
-.wrapper img{
+
+.symptom{
+	display: flex;
+	flex-direction:column;
+	justify-content: start;
+	align-items: center;
+	background-color: #fff;
+	border-radius: 10px;
+	width: 320px;
+	height: 160px;
+	padding: 5px 20px;
+	margin-top: 20px;
+}
+
+.symptomHead{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	padding: 5px;
+	font-size: 15px;
+	font-weight: bold;	
+	border-bottom: solid 2px;
+}
+
+.symptomInfo{
+	display: flex;	
+	justify-content: center;
+	align-items: center;
+	margin-top: 10px;
+	font-size: 12px;
+	width: 100%;
+	height: 100%;
+}
+
+.docInfo{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #fff;
+	border-radius: 10px;
+	padding: 5px 20px;
+}
+
+.resInfoWrapper img{
 	width: 45px;
 	height: 45px;
 }
+
 .resInfo{
 	display: flex;
 	flex-direction: column;
@@ -43,8 +88,6 @@
 .resWaitState{
 	background-color: #ffca68;
 	border-radius: 15px;
-	
-	
 }
 .resReadyState{
 	background-color: #34f234;

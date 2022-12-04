@@ -9,7 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Medical Access</title>
-<link href="css/parmacy.css" rel="stylesheet" type="text/css">
+<link href="css/reservationInfo.css" rel="stylesheet" type="text/css">
 <link href="css/default.css" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -31,17 +31,50 @@
 	pstmt = conn.prepareStatement(query);
 	rs = pstmt.executeQuery();
 	
+	rs.next();
+	
+	String symptom = rs.getString("symptom");
+ 	int state = rs.getInt("state");
+ 	String doc_id = rs.getString("doc_id");
+ 	
 %>
-
 	<jsp:include page="/components/header.jsp" flush="true">
 	    <jsp:param name="headerTitle" value="예약 정보"/>
 	</jsp:include>	
 	<div class="container">
-	<%
-		while(rs.next()) {
-			out.println(rs.getString("symptom"));
-		}
-	%>
+		<div class="resInfoWrapper">
+			<img src="./resources/diagnosis.png"/>
+			<div class="doc_information">
+			<%
+				query = "select doc_name, dep_name, hos_name from doctor D, hospital H, department DEP where DEP.dep_id = D.dep_id and DEP.hos_id = H.hos_id and doc_id = \'"+ doc_id +"\'";
+				pstmt = conn.prepareStatement(query);
+				rs = pstmt.executeQuery();
+				rs.next();
+				
+				out.println("<div class=\"resInfo\">");
+					out.println("<div class=\"hospitalName\">" + rs.getString("hos_name") + "</div>");
+					out.println("<div class=\"doctorInfo\">");
+						out.println("<div class=\"doctorName\">" +rs.getString("doc_name") + " 의사 </div>");
+						out.println("<div class=\"doctorDept\">" +rs.getString("dep_name") + "</div>");
+					out.println("</div>");
+				out.println("</div>");
+			%>
+			</div>
+			<%
+			if (state==0)
+				out.println("<div class=\"resState resWaitState\">예약 대기</div>");
+			else
+				out.println("<div class=\"resState resReadyState\">예약 완료</div>");
+			%>
+		</div>
+		<div class ="symptom">
+			<div class="symptomHead">증상</div>
+			<div class="symptomInfo">
+				<%
+				out.println(symptom);
+				%>
+			</div>
+		</div>
 	</div>
 	
 	<%@ include file="/components/footer.jsp" %>
