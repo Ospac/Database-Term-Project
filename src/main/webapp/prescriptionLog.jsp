@@ -40,7 +40,7 @@
 			<img src="./resources/medical-list.png"/>
 			<div class="preInfo">
 			while(rs.next()){
-				out.println("<button class=\"preWrapper\" name=\"prescription\" type=\"submit\" value=\""+rs.getString("hos_name")+"\">");
+				out.println("<button class=\"preWrapper\" name=\"prescription\" type=\"submit\" value=\"" + rs.getString("hos_name") +""\>");
 				out.println("<div class=\"prescription\">");	
 				out.println("<div class=\"doctorName\">" +rs.getString("doc_name")+ "의사</div>");
 				out.println("<div class=\"departmentName\">" +rs.getString("dep_name") + "</div>");

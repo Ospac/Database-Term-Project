@@ -27,7 +27,7 @@
 	conn = DriverManager.getConnection(url,user,pass);
 	
 	String rid = request.getParameter("reservation");
-	String query = "select symptom, state, doc_id from reservation where res_id = \'"+ rid +"\'";
+	String query = "select symptom, state, doc_id, p_id from reservation where res_id = \'"+ rid +"\'";
 	pstmt = conn.prepareStatement(query);
 	rs = pstmt.executeQuery();
 	
@@ -36,6 +36,7 @@
 	String symptom = rs.getString("symptom");
  	int state = rs.getInt("state");
  	String doc_id = rs.getString("doc_id");
+ 	String p_id = rs.getString("p_id");
  	
 %>
 	<jsp:include page="/components/header.jsp" flush="true">
@@ -46,18 +47,34 @@
 			<img src="./resources/diagnosis.png"/>
 			<div class="doc_information">
 			<%
-				query = "select doc_name, dep_name, hos_name from doctor D, hospital H, department DEP where DEP.dep_id = D.dep_id and DEP.hos_id = H.hos_id and doc_id = \'"+ doc_id +"\'";
-				pstmt = conn.prepareStatement(query);
-				rs = pstmt.executeQuery();
-				rs.next();
-				
-				out.println("<div class=\"resInfo\">");
-					out.println("<div class=\"hospitalName\">" + rs.getString("hos_name") + "</div>");
-					out.println("<div class=\"doctorInfo\">");
-						out.println("<div class=\"doctorName\">" +rs.getString("doc_name") + " 의사 </div>");
-						out.println("<div class=\"doctorDept\">" +rs.getString("dep_name") + "</div>");
+				if(session.getAttribute("isPatient")){
+					query = "select doc_name, dep_name, hos_name from doctor D, hospital H, department DEP where DEP.dep_id = D.dep_id and DEP.hos_id = H.hos_id and doc_id = \'"+ doc_id +"\'";
+					pstmt = conn.prepareStatement(query);
+					rs = pstmt.executeQuery();
+					rs.next();
+					
+					out.println("<div class=\"resInfo\">");
+						out.println("<div class=\"hospitalName\">" + rs.getString("hos_name") + "</div>");
+						out.println("<div class=\"doctorInfo\">");
+							out.println("<div class=\"doctorName\">" +rs.getString("doc_name") + " 의사 </div>");
+							out.println("<div class=\"doctorDept\">" +rs.getString("dep_name") + "</div>");
+						out.println("</div>");
 					out.println("</div>");
-				out.println("</div>");
+				}
+				else{
+					query = "select pat_name, pat_address, sex, blood_type from patient where pat_id = \'"+ p_id +"\'";
+					pstmt = conn.prepareStatement(query);
+					rs = pstmt.executeQuery();
+					rs.next();
+					
+					out.println("<div class=\"resInfo\">");
+						out.println("<div class=\"hospitalName\">" + rs.getString("pat_name") + "</div>");
+						out.println("<div class=\"doctorInfo\">");
+							out.println("<div class=\"doctorName\">" +rs.getString("sex") + " </div>");
+							out.println("<div class=\"doctorDept\">" +rs.getString("blood_type") + "</div>");
+						out.println("</div>");
+					out.println("</div>");
+				}
 			%>
 			</div>
 			<%
