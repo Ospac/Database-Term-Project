@@ -41,6 +41,7 @@
 	    <jsp:param name="headerTitle" value="약국 정보"/>
 	</jsp:include>	
 	<div class="container">
+		<div class= "scroll">
 	<%
 		while(rs.next()) {
 			out.println("<div class=\"parmacy\">");
@@ -52,6 +53,7 @@
 			out.println("</div>");
 		}
 	%>
+		</div>
 	</div>
 	
 	<%@ include file="/components/footer.jsp" %>

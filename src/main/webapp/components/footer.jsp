@@ -28,6 +28,10 @@
 				out.println("<span>내 정보</span>");
 			out.println("</a>");
 		}else{
+			out.println("<a href='schedule.jsp'>");
+			out.println("<span class='material-symbols-outlined'>outpatient_med</span>");
+			out.println("<span>일정</span>");
+			out.println("</a>");
 			out.println("<a href='reservationLog.jsp'>");
 			out.println("<span class='material-symbols-outlined'>outpatient_med</span>");
 			out.println("<span>예약 내역</span>");

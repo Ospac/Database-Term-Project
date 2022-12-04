@@ -9,10 +9,10 @@
 <link href="css/prescriptionLog.css" rel="stylesheet" type="text/css">
 <link href="css/default.css" rel="stylesheet" type="text/css">
 	<%
-		String pid = request.getParameter("id");
 		if(session.getAttribute("id") == null){
 			response.sendRedirect("login.jsp");
 		}
+		String pid = (String) session.getAttribute("id");
 	%>
 </head>
 <body>
@@ -29,7 +29,7 @@
 	Class.forName("oracle.jdbc.driver.OracleDriver");
 	conn = DriverManager.getConnection(url,user,pass);
 	
-	String query = "select doc_name, dep_name from doctor, department, prescription where doctor.doc_id = prescription.doc_id and p_id = '"+pid+"' and doctor.dep_id = department.dep_id";
+	String query = "select prescription.pre_id, doctor.doc_name, department.dep_name from doctor, department, prescription where doctor.doc_id = prescription.doc_id and p_id ='"+pid+"'and doctor.dep_id = department.dep_id";
 	pstmt = conn.prepareStatement(query);
 	rs = pstmt.executeQuery();
 	
@@ -39,19 +39,17 @@
 	</jsp:include>	
 	<%@ include file="/components/footer.jsp" %>
 	<form class="container" action="prescriptionInfo.jsp" method="post">
-		<button class="wrapper" name="prescription" value="PRE0001">
-			<img src="./resources/medical-list.png"/>
-			<div class="preInfo">
+		<%
 			while(rs.next()){
-				out.println("<button class=\"preWrapper\" name=\"prescription\" type=\"submit\" value=\"" + rs.getString("hos_name") +""\>");
-				out.println("<div class=\"prescription\">");	
-				out.println("<div class=\"doctorName\">" +rs.getString("doc_name")+ "의사</div>");
-				out.println("<div class=\"departmentName\">" +rs.getString("dep_name") + "</div>");
+				out.println("<button class='wrapper' name='prescription' type='submit' value='" + rs.getString("pre_id") +"'>");
+				out.println("<img src='./resources/medical-list.png'/>");
+				out.println("<div class='preInfo'>");
+					out.println("<div class=\"doctorInfo\">" +rs.getString("doc_name")+ "의사</div>");
+					out.println("<div class=\"departmentName\">" +rs.getString("dep_name") + "</div>");
 				out.println("</div>");
 				out.println("</button>");
 			}
-			</div>			
-		</button>
+		%>
 	</form>
 </body>
 </html>

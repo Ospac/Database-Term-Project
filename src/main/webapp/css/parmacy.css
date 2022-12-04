@@ -4,11 +4,16 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	overflow:scroll; 
+}
+.scroll{
+	overflow-y:scroll; 
 	width:400px; 
 	height:600px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
-
 .parmacy{
 	width: 320px;
 	height: 80px;
@@ -17,13 +22,14 @@
 	background-color: #fff;
 	border-radius: 8px;
 	gap:15px;
-	padding:10px;
 	margin-top:20px;
+	padding-left: 10px;
+	padding-right: 10px;
 }
 
 .parmacy img{
 	width: 75px;
-	height: 90%;
+	height: 75px;
 	padding: 5px 0 5px 10px;
 }
 

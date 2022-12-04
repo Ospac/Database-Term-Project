@@ -16,6 +16,7 @@
 	width: 320px;
 	height: 80px;
 	padding: 5px 20px;
+	gap: 15px;
 }
 .wrapper img{
 	width: 45px;
@@ -28,11 +29,11 @@
 	align-items: flex-start;
 	padding-right: 50px;
 }
-.hospitalName{
-	font-size: 15px;
-	font-weight: bold;
+.departmentName{
+	font-size: 12px;
+	font-weight: light
 }
 .doctorInfo{
-	font-size: 12px;
-	text-align: left;
+	font-size: 15px;
+	font-weight: bold;
 }
