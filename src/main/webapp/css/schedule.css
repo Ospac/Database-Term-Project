@@ -1,0 +1,92 @@
+@charset "UTF-8";
+.container{
+	margin-top: 30px;
+}
+.scroll{
+    overflow-y: auto;
+    width:400px; 
+	height:570px;
+	margin-top: 30px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+}
+.weekWrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 15px;
+    padding: 30px 50px;
+    min-height: 50px;
+    
+}
+.weekSelect{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap:20px;
+}
+.arrowLeft{
+
+}
+.yearMonth{
+
+}
+.arrowRight{
+
+}
+.dayNames{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 200px;
+}
+.dayNumbers{
+    display: flex;
+    flex-direction: row;
+	justify-content: space-between;
+    align-items: center;
+    width: 210px;
+}
+.dayNumbers span{
+	width: 14px;
+	text-align: center;
+    padding: 3px 5px;
+}
+.today{
+    background-color: #ff7f7f;
+}
+.todoWrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.todo{
+	height: 40px;
+	width: 300px;
+	border-top: 1px solid black;
+}
+.reserve{
+	background-color: #52b500;
+}
+.selectedDate{
+	padding: 20px 0;
+	font-size: 11px;
+	font-weight: bold;
+}
+.time{
+	 display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    font-size: 12px;
+    padding: 0 15px;
+}
+
