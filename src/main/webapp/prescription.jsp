@@ -30,7 +30,6 @@
 	String doc_id = request.getParameter("doc_id");
 	String p_id = request.getParameter("p_id");
 	String query = "INSERT INTO PRESCRIPTION VALUES ((select concat(\'PRE\', lpad(cast(substr(pre_id,-4) as number(10))+1,4,\'0\')) from prescription where pre_id = ( select max(pre_id)from prescription)),\'" +p_id + "\', \'" + doc_id + "\', \'" + contents + "\')";
-	System.out.println(query);
 	
 	Statement stmt = conn.createStatement();
 	int res = stmt.executeUpdate(query);
