@@ -41,7 +41,7 @@
 	</jsp:include>	
 	<div class="container">
 		<div style="overflow:scroll; width:400px; height:600px;">
-		<form class="doctorsContainer" action="reservation.jsp" method="post">
+		<form class="doctorsContainer" action="schedule.jsp" method="post">
 		<input type = "hidden" name = "id" value="<%=pid%>"/>
 <%
 while(rs.next()){
@@ -55,6 +55,8 @@ while(rs.next()){
 }
 %>
 		</form>
+		<br>
+		<br>
 		</div>
 	</div>
 	<%@ include file="/components/footer.jsp" %>
