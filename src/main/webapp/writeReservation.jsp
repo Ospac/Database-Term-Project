@@ -30,16 +30,11 @@ if(session.getAttribute("id") == null){
 </head>
 <body>
 <% 
-/* String serverIP = "localhost";
+String serverIP = "localhost";
 String strSID = "orcl";
 String portNum = "1521";
 String user = "team12";
-String pass = "team12"; */
-String serverIP = "localhost";
-String strSID = "xe";
-String portNum = "1600";
-String user = "medicalAccess";
-String pass = "1234";
+String pass = "team12";
 String url = "jdbc:oracle:thin:@"+serverIP+":"+portNum+":"+strSID;
 Connection conn = null;
 PreparedStatement pstmt;
