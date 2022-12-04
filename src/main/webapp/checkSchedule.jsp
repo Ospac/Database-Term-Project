@@ -11,6 +11,11 @@
 <script type="text/javascript" src="components/calendar.js"></script>
 </head>
 <body>
+	<%
+	if(session.getAttribute("id") == null){
+		response.sendRedirect("login.jsp");
+	}
+	%>
 	<jsp:include page="/components/header.jsp" flush="true">
 	    <jsp:param name="headerTitle" value="일정"/>
 	</jsp:include>	

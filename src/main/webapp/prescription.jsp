@@ -9,6 +9,11 @@
 
 </head>
 <body>
+	<%
+		if(session.getAttribute("id") == null){
+			response.sendRedirect("login.jsp");
+		}
+	%>
 	<%@ include file="/components/header.jsp" %>
 	
 	<%@ include file="/components/footer.jsp" %>

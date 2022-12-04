@@ -3,6 +3,9 @@
 <%@ page language="java" import="java.text.*, java.sql.*" %>
 <%
 	request.setCharacterEncoding("UTF-8");
+	if(session.getAttribute("id") == null){
+		response.sendRedirect("login.jsp");
+	}
 %>
 <!DOCTYPE html>
 <html>
@@ -47,7 +50,7 @@
 			<img src="./resources/diagnosis.png"/>
 			<div class="doc_information">
 			<%
-				if(session.getAttribute("isPatient")){
+				if(session.getAttribute("isPatient").equals("true")){
 					query = "select doc_name, dep_name, hos_name from doctor D, hospital H, department DEP where DEP.dep_id = D.dep_id and DEP.hos_id = H.hos_id and doc_id = \'"+ doc_id +"\'";
 					pstmt = conn.prepareStatement(query);
 					rs = pstmt.executeQuery();

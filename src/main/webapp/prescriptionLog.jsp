@@ -10,6 +10,9 @@
 <link href="css/default.css" rel="stylesheet" type="text/css">
 	<%
 		String pid = request.getParameter("id");
+		if(session.getAttribute("id") == null){
+			response.sendRedirect("login.jsp");
+		}
 	%>
 </head>
 <body>

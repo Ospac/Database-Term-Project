@@ -19,6 +19,9 @@
 <body>
 	
 <% 
+if(session.getAttribute("id") == null){
+	response.sendRedirect("login.jsp");
+}
 	String serverIP = "localhost";
 	String strSID = "orcl";
 	String portNum = "1521";

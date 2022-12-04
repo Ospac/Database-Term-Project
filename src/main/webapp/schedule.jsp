@@ -9,6 +9,11 @@
 <link href="css/schedule.css" rel="stylesheet" type="text/css">
 <link href="css/default.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="components/calendar.js"></script>
+<%
+if(session.getAttribute("id") == null){
+	response.sendRedirect("login.jsp");
+}
+%>
 </head>
 <body>
 	<jsp:include page="/components/header.jsp" flush="true">

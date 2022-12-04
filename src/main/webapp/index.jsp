@@ -3,6 +3,9 @@
 <%@ page language="java" import="java.text.*, java.sql.*" %>
 <%
 	request.setCharacterEncoding("UTF-8");
+	if(session.getAttribute("id") == null){
+		response.sendRedirect("login.jsp");
+	}
 %>
 <!DOCTYPE html>
 <html>

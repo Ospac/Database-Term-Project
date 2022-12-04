@@ -9,7 +9,8 @@
 </head>
 <nav>
 	<%
-		if(session.getAttribute("isPatient").equals("true")){
+
+		if(session.getAttribute("isPatient") != null && session.getAttribute("isPatient").equals("true")){
 			out.println("<a href='index.jsp'>");
 				out.println("<span class='material-symbols-outlined'>home</span>");
 				out.println("<span>홈</span>");

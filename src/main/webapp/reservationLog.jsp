@@ -11,6 +11,9 @@
 </head>
 <body>
 	<%
+	if(session.getAttribute("id") == null){
+		response.sendRedirect("index.jsp");
+	}
 	String serverIP = "localhost";
 	String strSID = "orcl";
 	String portNum = "1521";
@@ -23,9 +26,9 @@
 	Class.forName("oracle.jdbc.driver.OracleDriver");
 	conn = DriverManager.getConnection(url,user,pass);
 	
-	String uid = session.getAttribute("id");
+	String uid = (String) session.getAttribute("id");
 	String query = "";
-	if (session.getAttribute("isPatient"))
+	if (session.getAttribute("isPatient").equals("true"))
 		query = "select res_id, symptom, p_id, doc_id, state from reservation where p_id = \'" + uid + "\'"; 
 	else
 		query = "select res_id, symptom, p_id, doc_id, state from reservation where doc_id = \'" + uid + "\'";
@@ -44,7 +47,7 @@
 			out.println("<div class=\"resInfo\">");
 			out.println("<div class=\"hospitalName\">" + rs.getString("res_id") + "</div>");
 			out.println("<div class=\"doctorInfo\">");
-			if (session.getAttribute("isPatient")) {
+			if (session.getAttribute("isPatient").equals("true")) {
 				out.println("<div class=\"doctorName\">"+ rs.getString("doc_id") + "</div>");
 				out.println("<div class=\"doctorDept\">" + rs.getString("p_id") +"</div>");
 			}
