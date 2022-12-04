@@ -28,25 +28,35 @@
 	Connection conn = null;
 	PreparedStatement pstmt;
 	ResultSet rs;
-	Statement stmt = null;
 	Class.forName("oracle.jdbc.driver.OracleDriver");
 	conn = DriverManager.getConnection(url,user,pass);
+	String query = "select concat('R',lpad(cast(substr(res_id,-5) as number(10))+1,6,'0'))as res from reservation where res_id = ( select max(res_id) from reservation )";
+	pstmt = conn.prepareStatement(query);
+	rs = pstmt.executeQuery();
+	String res_id = "";
+	while(rs.next())
+	{
+		res_id = rs.getString("res");
+	}
 	%>
 	<jsp:include page="/components/header.jsp" flush="true">
     <jsp:param name="headerTitle" value="예약"/>
 	</jsp:include>
-	<form class="container" action="tempReservation.jsp" method="post">
+	<form class="container" action="checkSchedule.jsp" method="post">
 	<div>환자정보 : <%=pid %></div>
 	<div>의사정보 : <%=docid %></div>
 	<div>증상 : <%=symptom %></div>
+	<div>예약번호 : <%=res_id %></div>
+	<input type = "hidden" name = "res" value="<%=res_id%>"/>
 	<%
-	String query = "INSERT INTO RESERVATION VALUES ((select concat('R',lpad(cast(substr(res_id,-5) as number(10))+1,6,'0')) from reservation where res_id = ( select max(res_id) from reservation )), '"+symptom+"', 0, '"+pid+"', '"+docid+"')";
+	query = "INSERT INTO RESERVATION VALUES ((select concat('R',lpad(cast(substr(res_id,-5) as number(10))+1,6,'0')) from reservation where res_id = ( select max(res_id) from reservation )), '"+symptom+"', 0, '"+pid+"', '"+docid+"')";
 	pstmt = conn.prepareStatement(query);
 	pstmt.executeUpdate();
 	%>
 	
-		<button type= "submit">제출하기</button>
+		<button type= "submit">일정 확인</button>
 	</form>
+	
 	<%@ include file="/components/footer.jsp" %>
 </body>
 </html>

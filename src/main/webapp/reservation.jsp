@@ -77,7 +77,7 @@
 			<textarea name="symptom" class="symptomInput" placeholder="ex) 감기기운, 두통 및 콧물">
 			</textarea>
 		</div>
-		<button type="submit" class="reservationBtn">일정 확인</button>
+		<button type="submit" class="reservationBtn">예약 하기</button>
 	</form>
 	</div>
 	<%@ include file="/components/footer.jsp" %>

@@ -13,7 +13,9 @@
 <title>Medical Access</title>
 <%
 	String pid = session.getAttribute("id").toString();;
-	String time = request.getParameter("resTime");	
+	String time = request.getParameter("resTime");
+	String time_s = ", "+ time +"시";
+	String res = request.getParameter("res");
 %>
 </head>
 <body>
@@ -37,10 +39,11 @@
 	<jsp:include page="/components/header.jsp" flush="true">
     <jsp:param name="headerTitle" value="예약"/>
 	</jsp:include>
-	<div>예약시간 : <%=time%></div>	
+	<div>예약시간 : <%=time%></div>
+	<div>res야 거기있니 : <%=res%></div>		
 	<form class="container" action="index.jsp" method="post">
 	<%
-	query = "INSERT INTO RESERVATION VALUES ((select concat('R',lpad(cast(substr(res_id,-5) as number(10))+1,6,'0')) from reservation where res_id = ( select max(res_id) from reservation )), '감기 몸살, 두통, 콧물', 0, '"+pid+"', 'D000001')";
+	query = "update reservation set symptom = concat((select symptom from reservation where res_id = 'R000001'),'time') where res_id = 'R000001'";
 	pstmt = conn.prepareStatement(query);
 	pstmt.executeUpdate();
 	%>
