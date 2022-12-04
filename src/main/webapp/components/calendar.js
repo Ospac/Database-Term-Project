@@ -1,8 +1,10 @@
 class Calendar{
-	constructor(){
+	constructor(symptom, docId){
 		this.now = new Date();
 	    this.date = new Date(this.now.getFullYear(), this.now.getMonth(), this.now.getDate());
 	    this.week = this.makeWeekArr(this.date);
+	    this.symptom = symptom;
+	    this.docId = docId;
 	}
 	makeWeekArr(date) {
 	    let day = date.getDay();
@@ -32,29 +34,30 @@ class Calendar{
 	}
 }
 
-function init(){
-	let cal = new Calendar();
+function init(symptom, docId){
+	let cal = new Calendar(symptom, docId);
 	let arrowLeft = document.querySelector(".arrowLeft");
 	let arrowRight= document.querySelector(".arrowRight");
+	console.log(symptom, docId);
 	arrowLeft.addEventListener("click", ()=>cal.onPressArrowLeft(cal.date));
 	arrowRight.addEventListener("click",()=>cal.onPressArrowRight(cal.date));
     renderCal(cal);
     renderDate(cal.date.getFullYear(), cal.date.getMonth()+1, cal.date.getDate());
-	sendRequest(cal.date.getFullYear(), cal.date.getMonth()+1, cal.date.getDate())
+	sendRequest(cal.date.getFullYear(), cal.date.getMonth()+1, cal.date.getDate(), symptom, docId)
 }
 function selectDay(cal, e){
 	let day = e.target.innerHTML;
 	let month = cal.date.getMonth() + 1;
 	let year = cal.date.getFullYear();
 	renderDate(year, month, day);
-	sendRequest(year,month,day);
+	sendRequest(year,month,day, cal.symptom, cal.docId);
 	
 }
-function sendRequest(year,month,day){
+function sendRequest(year,month,day, symptom, docId){
 	let httpRequest = new XMLHttpRequest();
 	httpRequest.open("POST", "./components/calenderResponse.jsp", true);
 	httpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-	let parameter = `year=${year}&month=${month}&day=${day}`
+	let parameter = `year=${year}&month=${month}&day=${day}&symptom=${symptom}&docId=${docId}`
 	httpRequest.send(parameter);
 	httpRequest.onreadystatechange = function(){
 		if(httpRequest.readyState == XMLHttpRequest.DONE && httpRequest.status == 200){

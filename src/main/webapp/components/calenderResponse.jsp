@@ -17,9 +17,11 @@ Class.forName("oracle.jdbc.driver.OracleDriver");
 String year = request.getParameter("year");	
 String month = request.getParameter("month");	
 String day = request.getParameter("day");
+String symptom = request.getParameter("symptom");
+String docId = request.getParameter("docId");
 
 conn = DriverManager.getConnection(url,user,pass);
-String query = "select S_state, S_hour, S_minute from doctor_schedule where doc_id = 'D000091' and TO_DATE('"+year+"-"+month+"-"+day+"', 'yyyy-mm-dd') = S_Date";
+String query = "select S_state, S_hour, S_minute from doctor_schedule where doc_id = '"+docId+"' and TO_DATE('"+year+"-"+month+"-"+day+"', 'yyyy-mm-dd') = S_Date";
 pstmt = conn.prepareStatement(query);
 rs = pstmt.executeQuery();
 if(rs.next()){
@@ -38,12 +40,17 @@ if(rs.next()){
 					out.println("</div>");
 				out.println("</div>");
 			}else{
-					out.println("<button class='todo' name='resTime' value='i' type='submit'>");
+					out.println("<button class='todo' name='resTime' value='"+i+"' type='submit'>");
 						out.println("<div class='time'>");
 								out.println("<div class='calTime'>" + i +"</div>");
 								out.println("<div class='resTime'>");
 							out.println("</div>");
 						out.println("</div>");
+						out.println("<input type='hidden' name='symptom' value='"+symptom+"' />");
+						out.println("<input type='hidden' name='docId' value='"+docId+"' />");
+						out.println("<input type='hidden' name='year' value='"+year+"' />");
+						out.println("<input type='hidden' name='month' value='"+month+"' />");
+						out.println("<input type='hidden' name='day' value='"+day+"' />");
 					out.println("</button>");
 			}
 		out.println("</form>");
@@ -52,12 +59,17 @@ if(rs.next()){
 }else{
 	out.println("<form class='todoWrapper' action='writeReservation.jsp' method='post'>");
 	for(int i = 9; i < 22; i++){
-			out.println("<button button class='todo' name='resTime' value='i' type='submit'>");
+			out.println("<button button class='todo' name='resTime' value='"+ i +"' type='submit'>");
 				out.println("<div class='time'>");
 						out.println("<div class='calTime'>" + i +"</div>");
 						out.println("<div class='resTime'>");
 					out.println("</div>");
 				out.println("</div>");
+				out.println("<input type='hidden' name='symptom' value='"+symptom+"' />");
+				out.println("<input type='hidden' name='docId' value='"+docId+"' />");
+				out.println("<input type='hidden' name='year' value='"+year+"' />");
+				out.println("<input type='hidden' name='month' value='"+month+"' />");
+				out.println("<input type='hidden' name='day' value='"+day+"' />");
 			out.println("</button>");
 	}
 	out.println("</form>");
