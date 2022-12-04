@@ -26,13 +26,25 @@
 	Class.forName("oracle.jdbc.driver.OracleDriver");
 	conn = DriverManager.getConnection(url,user,pass);
 	
-	//String location = request.getParameter("par_location");
-	//String query = "select par_name, par_location from parmacy where par_location like '%"+location+"%'";
-	//pstmt = conn.prepareStatement(query);
-	//rs = pstmt.executeQuery();
-%>
-	<%@ include file="/components/header.jsp" %>
+	String contents = request.getParameter("contents");
+	String doc_id = request.getParameter("doc_id");
+	String p_id = request.getParameter("p_id");
+	String query = "INSERT INTO PRESCRIPTION VALUES ((select concat(\'PRE\', lpad(cast(substr(pre_id,-4) as number(10))+1,4,\'0\')) from prescription where pre_id = ( select max(pre_id)from prescription)),\'" +p_id + "\', \'" + doc_id + "\', \'" + contents + "\')";
+	System.out.println(query);
 	
+	Statement stmt = conn.createStatement();
+	int res = stmt.executeUpdate(query);
+	
+%>
+	<jsp:include page="/components/header.jsp" flush="true">
+	    <jsp:param name="headerTitle" value="처 방 전"/>
+	</jsp:include>		
+	<%
+	
+	if(res > 0) out.println("처방전 업데이트 성공");
+	else out.println("처방전 업데이트 실패");
+	
+	%>
 	<%@ include file="/components/footer.jsp" %>
 </body>
 </html>
