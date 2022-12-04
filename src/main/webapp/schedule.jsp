@@ -19,9 +19,6 @@ if(session.getAttribute("id") == null){
 	<jsp:include page="/components/header.jsp" flush="true">
 	    <jsp:param name="headerTitle" value="일정"/>
 	</jsp:include>	
-	 <script>
-		document.addEventListener("DOMContentLoaded", () => init());
-	</script>
 	<div class="container">
 			<div class="weekWrapper">
 				<div class="weekSelect">

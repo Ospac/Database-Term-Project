@@ -19,7 +19,9 @@ String month = request.getParameter("month");
 String day = request.getParameter("day");
 String symptom = request.getParameter("symptom");
 String docId = request.getParameter("docId");
-
+if(docId == null){
+	docId = (String) session.getAttribute("id");
+}
 conn = DriverManager.getConnection(url,user,pass);
 String query = "select S_state, S_hour, S_minute from doctor_schedule where doc_id = '"+docId+"' and TO_DATE('"+year+"-"+month+"-"+day+"', 'yyyy-mm-dd') = S_Date";
 pstmt = conn.prepareStatement(query);
