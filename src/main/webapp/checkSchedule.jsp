@@ -11,12 +11,16 @@
 <script type="text/javascript" src="components/calendar.js"></script>
 </head>
 <body>
+	<%
+	if(session.getAttribute("id") == null){
+		response.sendRedirect("login.jsp");
+	}
+	String symptom = request.getParameter("symptom");
+	String docId = request.getParameter("docId");
+	%>
 	<jsp:include page="/components/header.jsp" flush="true">
 	    <jsp:param name="headerTitle" value="일정"/>
 	</jsp:include>	
-	 <script>
-		document.addEventListener("DOMContentLoaded", () => init());
-	</script>
 	<div class="container">
 		<div class="weekWrapper">
 			<div class="weekSelect">
@@ -48,7 +52,9 @@
 	</div>
 	<%@ include file="/components/footer.jsp" %>
 	<script>
-		init();
+		const symptom = "<%=symptom%>";
+		const docId = "<%=docId%>";
+		init(symptom, docId);
 	</script>
 </body>
 </html>

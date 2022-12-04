@@ -3,6 +3,9 @@
 <%@ page language="java" import="java.text.*, java.sql.*" %>
 <%
 	request.setCharacterEncoding("UTF-8");
+	if(session.getAttribute("id") == null){
+		response.sendRedirect("login.jsp");
+	}
 %>
 <!DOCTYPE html>
 <html>
@@ -12,7 +15,7 @@
 <link href="css/reservation.css" rel="stylesheet" type="text/css">
 <title>Medical Access</title>
 <%
-	String pid = session.getAttribute("id");
+	String pid = (String)session.getAttribute("id");
 	String docid = request.getParameter("doctor");	
 %>
 </head>
@@ -39,6 +42,7 @@
 	</jsp:include>
 	<div style="overflow:auto; width:400px; height: 600px;">	
 	<form class="container" action="checkSchedule.jsp" method="post">
+	
 		<%
 		while(rs.next()) {
 			out.println("<div class=\"patientWrapper\">");
@@ -75,8 +79,10 @@
 			<div class="title">증상 입력</div>
 			<textarea name="symptom" class="symptomInput" placeholder="ex) 감기기운, 두통 및 콧물">
 			</textarea>
+			<input type="hidden" name="docId" value=<%=docid%> />
 		</div>
 		<button type="submit" class="reservationBtn">일정 확인</button>
+		
 	</form>
 	</div>
 	<%@ include file="/components/footer.jsp" %>

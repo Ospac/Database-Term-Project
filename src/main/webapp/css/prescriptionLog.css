@@ -18,6 +18,7 @@
 	gap: 15px;
 	margin-bottom: 20px;
 	padding: 5px 20px;
+	gap: 15px;
 }
 
 .wrapper img{
@@ -33,7 +34,7 @@
 }
 .departmentName{
 	font-size: 12px;
-	font-weight: light;
+	font-weight: light
 }
 .doctorInfo{
 	font-size: 15px;
