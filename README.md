@@ -41,7 +41,7 @@
     아이디, 패스워드 검증
     환자, 의사 선택
     ID, PASSWORD 입력
-    ```
+    
     Patient
     ID : P000002
     PS : 33746441
@@ -49,7 +49,6 @@
     Doctor
     ID : D000032
     PS : 69644971
-    ```
        
 ## 2. Doctor (User-type)
 ### 2.1 일정 (schedule.jsp)
