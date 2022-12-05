@@ -4,13 +4,14 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	margin-top: 15px;
 }
 .scroll{
 	overflow-y:scroll; 
 	width:400px; 
-	height:600px;
+	height:550px;
 	display: flex;
-	flex-direction: column;
+	flex-direction: flex-start;
 	justify-content: center;
 	align-items: center;
 }

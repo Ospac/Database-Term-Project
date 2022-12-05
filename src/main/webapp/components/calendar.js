@@ -38,7 +38,6 @@ function init(symptom, docId){
 	let cal = new Calendar(symptom, docId);
 	let arrowLeft = document.querySelector(".arrowLeft");
 	let arrowRight= document.querySelector(".arrowRight");
-	console.log(symptom, docId);
 	arrowLeft.addEventListener("click", ()=>cal.onPressArrowLeft(cal.date));
 	arrowRight.addEventListener("click",()=>cal.onPressArrowRight(cal.date));
     renderCal(cal);

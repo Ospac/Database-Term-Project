@@ -13,6 +13,8 @@
 if(session.getAttribute("id") == null){
 	response.sendRedirect("login.jsp");
 }
+String docId = (String) session.getAttribute("id");
+String symptom = "";
 %>
 </head>
 <body>
@@ -51,7 +53,9 @@ if(session.getAttribute("id") == null){
         </div>
 	<%@ include file="/components/footer.jsp" %>
 	<script>
-		init();
+	const symptom = "<%=symptom%>";
+	const docId = "<%=docId%>";
+	init(symptom, docId);
 	</script>
 </body>
 </html>

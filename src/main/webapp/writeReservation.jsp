@@ -43,7 +43,11 @@ Statement stmt = null;
 Class.forName("oracle.jdbc.driver.OracleDriver");
 conn = DriverManager.getConnection(url,user,pass);
 String query = "INSERT INTO RESERVATION VALUES ((select concat('R',lpad(cast(substr(res_id,-5) as number(10))+1,6,'0')) from reservation where res_id = ( select max(res_id) from reservation )), '"+symptom+"', 0, '"+pid+"', '"+docId+"')";
+String query2 = "INSERT INTO DOCTOR_SCHEDULE VALUES ((select concat('S',lpad(cast(substr(S_id,-5) as number(10))+1,6,'0')) from doctor_schedule where s_id = ( select max(s_id) from doctor_schedule )), '"+docId+"', TO_DATE('"+year+"-"+month+"-"+day+"', 'yyyy-mm-dd'), "+time+", 0, 0)";
+
 pstmt = conn.prepareStatement(query);
+pstmt.executeUpdate();
+pstmt = conn.prepareStatement(query2);
 pstmt.executeUpdate();
 response.sendRedirect("reservationLog.jsp");
 %>

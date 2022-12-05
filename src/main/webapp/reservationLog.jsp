@@ -26,10 +26,10 @@
 	Class.forName("oracle.jdbc.driver.OracleDriver");
 	conn = DriverManager.getConnection(url,user,pass);
 	
-	String uid = session.getAttribute("id").toString();
+	String uid = (String) session.getAttribute("id");
 	String query = "";
-	String isPatient = session.getAttribute("isPatient").toString();
-	if (isPatient.equals("true"))
+	String isPatient = (String)session.getAttribute("isPatient");
+	if (session.getAttribute("id") != null && isPatient.equals("true"))
 		query = "select res_id, symptom, p_id, doc_id, state from reservation where p_id = \'" + uid + "\'"; 
 	else
 		query = "select res_id, symptom, p_id, doc_id, state from reservation where doc_id = \'" + uid + "\'";
@@ -58,9 +58,9 @@
 			out.println("</div>");
 			out.println("</div>");
 			if (rs.getInt("state") == 0)
-				out.println("<div class=\"resState resWaitState\">예약 대기</div>");
+				out.println("<div class=\"resState resWaitState\">예약중</div>");
 			else
-				out.println("<div class=\"resState resReadyState\">예약 완료</div>");
+				out.println("<div class=\"resState resReadyState\">완료</div>");
 			out.println("</button>");
 		}
 		%>

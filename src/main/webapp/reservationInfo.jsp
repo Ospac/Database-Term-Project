@@ -82,9 +82,9 @@
 			</div>
 			<%
 			if (state==0)
-				out.println("<div class=\"resState resWaitState\">예약 대기</div>");
+				out.println("<div class=\"resState resWaitState\">예약중</div>");
 			else
-				out.println("<div class=\"resState resReadyState\">예약 완료</div>");
+				out.println("<div class=\"resState resReadyState\">완료</div>");
 			%>
 		</div>
 		<div class ="symptom">
@@ -95,9 +95,9 @@
 				%>
 			</div>
 		</div>
-		<form action="prescription.jsp">
+		<form action="writePrescription.jsp" method="post">
 		<%
-		if(!isPatient.equals("true")) {
+		if(isPatient.equals("false")) {
 			out.println("<input type=\"hidden\" name=\"p_id\" value=\"" + p_id + "\">");
 			out.println("<input type=\"hidden\" name=\"doc_id\" value=\"" + doc_id + "\">");
 			out.println("<div class=\"prescriptionWrapper\">");

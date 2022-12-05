@@ -1,0 +1,78 @@
+@charset "UTF-8";
+.container{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 15px;
+}
+.resInfoTitle{
+	font-size: 16px;
+	font-weight: bold;
+	padding-top: 20px;
+}
+.resInfoWrapper{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	background-color: #fff;
+	border-radius: 10px;
+	width: 320px;
+	height: 80px;
+	padding: 5px 20px;
+}
+.resInfoWrapper img{
+	width: 45px;
+	height: 45px
+}
+.doc_information{
+	padding-left: 100px;
+}
+.resInfo{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+}	
+.hospitalName{
+	font-size: 15px;
+	font-weight: bold;
+}
+.symptom{
+	display: flex;
+	flex-direction:column;
+	justify-content: start;
+	align-items: center;
+	background-color: #fff;
+	border-radius: 10px;
+	width: 320px;
+	height: 160px;
+	padding: 5px 20px;
+	margin-top: 20px;
+}
+
+.symptomHead{
+	width: 100%;
+	padding: 8px;
+	font-size: 15px;
+	font-weight: bold;	
+	border-bottom: solid 1px;
+}
+
+.symptomInfo{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 10px;
+	font-size: 13px;
+	width: 100%;
+	height: 100%;
+}
+.doctorInfo{
+	font-size: 12px;
+}
+.doctorName{
+}
+.doctorDept{
+	font-size: 11px;
+}

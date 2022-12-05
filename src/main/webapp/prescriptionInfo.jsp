@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Medical Access</title>
-<link href="css/prescriptionLog.css" rel="stylesheet" type="text/css">
+<link href="css/prescriptionInfo.css" rel="stylesheet" type="text/css">
 <link href="css/default.css" rel="stylesheet" type="text/css">
 	<%
 		if(session.getAttribute("id") == null){
@@ -17,7 +17,6 @@
 </head>
 <body>
 <% 
-
 	String serverIP = "localhost";
 	String strSID = "orcl";
 	String portNum = "1521";
@@ -29,28 +28,73 @@
 	ResultSet rs;
 	Class.forName("oracle.jdbc.driver.OracleDriver");
 	conn = DriverManager.getConnection(url,user,pass);
-	
-	String query = "select prescription.pre_id, doctor.doc_name, department.dep_name from doctor, department, prescription where doctor.doc_id = prescription.doc_id and p_id ='"+pid+"'and doctor.dep_id = department.dep_id";
+	String pre_id = request.getParameter("prescription");
+	String isPatient = session.getAttribute("isPatient").toString();
+	String query = "select p_id, doc_id, contents from prescription where pre_id =\'" + pre_id + "\'" ;
 	pstmt = conn.prepareStatement(query);
 	rs = pstmt.executeQuery();
+	rs.next();
+	String p_id = rs.getString("p_id");
+	String doc_id = rs.getString("doc_id");
+	String contents = rs.getString("contents");
 	
 %>
 	<jsp:include page="/components/header.jsp" flush="true">
-	    <jsp:param name="headerTitle" value="처방전 목록"/>
+	    <jsp:param name="headerTitle" value="처방전 상세"/>
 	</jsp:include>	
 	<%@ include file="/components/footer.jsp" %>
-	<form class="container" action="prescriptionInfo.jsp" method="post">
-		<%
-			while(rs.next()){
-				out.println("<button class='wrapper' name='prescription' type='submit' value='" + rs.getString("pre_id") +"'>");
-				out.println("<img src='./resources/medical-list.png'/>");
-				out.println("<div class='preInfo'>");
-					out.println("<div class=\"doctorInfo\">" +rs.getString("doc_name")+ "의사</div>");
-					out.println("<div class=\"departmentName\">" +rs.getString("dep_name") + "</div>");
-				out.println("</div>");
-				out.println("</button>");
-			}
+	<div class="container">
+		<div class="resInfoTitle">
+		<% if(isPatient.equals("true")){
+			out.println("의사 정보");
+		} else{
+			out.println("환자 정보");
+		}
 		%>
-	</form>
+		</div>
+		<div class="resInfoWrapper">
+			<img src="./resources/diagnosis.png"/>
+			<div class="doc_information">
+			<%
+				if(isPatient.equals("true")){
+					query = "select doc_name, dep_name, hos_name from doctor D, hospital H, department DEP where DEP.dep_id = D.dep_id and DEP.hos_id = H.hos_id and doc_id = \'"+ doc_id +"\'";
+					pstmt = conn.prepareStatement(query);
+					rs = pstmt.executeQuery();
+					rs.next();
+					
+					out.println("<div class=\"resInfo\">");
+						out.println("<div class=\"hospitalName\">" + rs.getString("hos_name") + "</div>");
+						out.println("<div class=\"doctorInfo\">");
+							out.println("<div class=\"doctorName\">" +rs.getString("doc_name") + " 의사 </div>");
+							out.println("<div class=\"doctorDept\">" +rs.getString("dep_name") + "</div>");
+						out.println("</div>");
+					out.println("</div>");
+				}
+				else{
+					query = "select pat_name, pat_address, sex, blood_type from patient where pat_id = \'"+ p_id +"\'";
+					pstmt = conn.prepareStatement(query);
+					rs = pstmt.executeQuery();
+					rs.next();
+					
+					out.println("<div class=\"resInfo\">");
+						out.println("<div class=\"hospitalName\"> 환자이름 : " + rs.getString("pat_name") + "</div>");
+						out.println("<div class=\"doctorInfo\">");
+							out.println("<div class=\"doctorDept\"> 혈액형 : " +rs.getString("blood_type") + "</div>");
+							out.println("<div class=\"doctorName\"> 성별 : " +rs.getString("sex") + " </div>");
+						out.println("</div>");
+					out.println("</div>");
+				}
+			%>
+			</div>
+		</div>
+		<div class ="symptom">
+			<div class="symptomHead">처방전</div>
+			<div class="symptomInfo">
+				<%
+				out.println(contents);
+				%>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

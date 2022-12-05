@@ -26,6 +26,7 @@ conn = DriverManager.getConnection(url,user,pass);
 String query = "select S_state, S_hour, S_minute from doctor_schedule where doc_id = '"+docId+"' and TO_DATE('"+year+"-"+month+"-"+day+"', 'yyyy-mm-dd') = S_Date";
 pstmt = conn.prepareStatement(query);
 rs = pstmt.executeQuery();
+
 if(rs.next()){
 	do{
 		String hour = rs.getString("S_hour");
@@ -55,13 +56,13 @@ if(rs.next()){
 						out.println("<input type='hidden' name='day' value='"+day+"' />");
 					out.println("</button>");
 			}
-		out.println("</form>");
 		}
+		out.println("</form>");
 	}while(rs.next());
 }else{
 	out.println("<form class='todoWrapper' action='writeReservation.jsp' method='post'>");
 	for(int i = 9; i < 22; i++){
-			out.println("<button button class='todo' name='resTime' value='"+ i +"' type='submit'>");
+			out.println("<button class='todo' name='resTime' value='"+ i +"' type='submit'>");
 				out.println("<div class='time'>");
 						out.println("<div class='calTime'>" + i +"</div>");
 						out.println("<div class='resTime'>");
