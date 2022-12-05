@@ -11,7 +11,7 @@
 	width:400px; 
 	height:550px;
 	display: flex;
-	flex-direction: flex-start;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 }
